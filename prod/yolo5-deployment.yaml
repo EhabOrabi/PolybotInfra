@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yolo5-deployment
+  namespace: prod
+  labels:
+    app: yolo5
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yolo5
+  template:
+    metadata:
+      labels:
+        app: yolo5
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: yolo5
+          image: ehab215/yolo5:latest
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "100Mi"
+            limits:
+              cpu: "200m"
+              memory: "512Mi"
+          readinessProbe:
+            exec:
+              command: ["sh", "-c", "kill -0 $(pgrep -f 'app.py')"]
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          livenessProbe:
+            exec:
+              command: ["sh", "-c", "kill -0 $(pgrep -f 'app.py')"]
+            initialDelaySeconds: 15
+            periodSeconds: 20
+---
+apiVersion: autoscaling/v1  # Changed to v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: yolo5-hpa
+  namespace: prod
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: yolo5
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50  # Use the target CPU utilization percentage
