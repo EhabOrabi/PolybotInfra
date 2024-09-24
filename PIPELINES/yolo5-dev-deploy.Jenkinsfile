@@ -17,9 +17,9 @@ pipeline {
         stage('Update YAML manifests') {
             steps {
                 sh '''
-                cd k8s/$SERVICE_NAME
-                sed -i "s|image: .*|image: ${IMAGE_FULL_NAME_PARAM}|" deployment.yaml
-                git add deployment.yaml
+                cd K8S/$SERVICE_NAME
+                sed -i "s|image: .*|image: ${IMAGE_FULL_NAME_PARAM}|" yolo5-deployment.yaml
+                git add yolo5-deployment.yaml
                 git commit -m "Jenkins deploy $SERVICE_NAME $IMAGE_FULL_NAME_PARAM"
                 '''
             }

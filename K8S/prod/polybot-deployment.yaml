@@ -17,21 +17,30 @@ spec:
     spec:
       containers:
       - name: server
-        image: ehab215/polybot2_k8s_prod:1.6
+        image: ehab215/polybot2:1.6.0
         ports:
         - containerPort: 8443 # Ensure this matches your application's listening port
         env:
           - name: secret_name
-            value: loaytokensecret-for-amz-prolect #TODO
+            value: ehabo_telegram_tokenV1_tf
           - name: TELEGRAM_APP_URL
             value: https://ehabo-polybot-k8s-v1.int-devops.click
-          - name: region_of_sqs #TODO
+          - name: REGION_NAME
             value: eu-west-3
-          - name: my_cert
-            valueFrom:
-              secretKeyRef:
-                name: my-tls-secret #TODO
-                key: cert #TODO
+          - name: SQS_QUEUE_URL
+            value: https://sqs.eu-west-3.amazonaws.com/019273956931/ehabo-PolybotServiceQueue-k8s
+        volumeMounts:
+          - name: tls-vol
+            mountPath: /usr/src/app/tls
+      volumes:
+        - name: tls-vol
+          secret:
+            secretName: polybot-tls
+            items:
+             - key: tls.crt
+               path: cert
+             - key: tls.key
+               path: key
 ---
 apiVersion: v1
 kind: Service
