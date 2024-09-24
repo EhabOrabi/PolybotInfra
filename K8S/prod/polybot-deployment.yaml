@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: polybot-deployment-prod
+  namespace: prod
+  labels:
+    app: polybot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: polybot
+  template:
+    metadata:
+        labels:
+          app: polybot
+    spec:
+      containers:
+      - name: server
+        image: ehab215/polybot2_k8s_prod:1.6
+        ports:
+        - containerPort: 8443 # Ensure this matches your application's listening port
+        env:
+          - name: secret_name
+            value: loaytokensecret-for-amz-prolect #TODO
+          - name: TELEGRAM_APP_URL
+            value: https://ehabo-polybot-k8s-v1.int-devops.click
+          - name: region_of_sqs #TODO
+            value: eu-west-3
+          - name: my_cert
+            valueFrom:
+              secretKeyRef:
+                name: my-tls-secret #TODO
+                key: cert #TODO
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: polybot-service-1
+  namespace: prod
+spec:
+  selector:
+    app: polybot
+  ports:
+    - protocol: TCP
+      port: 8443
+      targetPort: 8443
