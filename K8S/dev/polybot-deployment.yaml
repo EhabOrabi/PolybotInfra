@@ -42,8 +42,6 @@ spec:
              - key: tls_dev.key
                path: key
 
-
-
 ---
 apiVersion: v1
 kind: Service

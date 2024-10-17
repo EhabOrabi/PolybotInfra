@@ -41,6 +41,7 @@ spec:
                path: cert
              - key: tls.key
                path: key
+
 ---
 apiVersion: v1
 kind: Service

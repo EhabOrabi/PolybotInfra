@@ -36,6 +36,7 @@ spec:
               command: ["sh", "-c", "kill -0 $(pgrep -f 'app.py')"]
             initialDelaySeconds: 15
             periodSeconds: 20
+
 ---
 apiVersion: autoscaling/v1  # Changed to v1
 kind: HorizontalPodAutoscaler
