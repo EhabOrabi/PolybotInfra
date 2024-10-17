@@ -18,7 +18,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: yolo5
-          image: ehab215/yolo5_prod:latest
+          image: ehab215/yolo5_prod:v1.0.14
           resources:
             requests:
               cpu: "100m"
