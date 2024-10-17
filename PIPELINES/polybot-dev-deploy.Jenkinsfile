@@ -17,7 +17,7 @@ pipeline {
         stage('Update YAML manifests') {
             steps {
                 sh '''
-                cd K8S/$SERVICE_NAME
+                cd K8S/$SERVICE_NAME/polybot
                 sed -i "s|image: .*|image: ${IMAGE_FULL_NAME_PARAM}|" polybot-deployment.yaml
                 git add polybot-deployment.yaml
                 git commit -m "Jenkins deploy $SERVICE_NAME $IMAGE_FULL_NAME_PARAM"
