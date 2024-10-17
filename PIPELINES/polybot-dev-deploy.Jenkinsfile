@@ -24,6 +24,7 @@ pipeline {
                 '''
             }
         }
+
         stage('Git push') {
             steps {
                withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
