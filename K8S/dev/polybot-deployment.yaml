@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: server
-        image: ehab215/my_poly_pot_k8s_project_dev:v1.0.2
+        image: ehab215/polybot_dev:v1.0.2
         ports:
         - containerPort: 8443 # Ensure this matches your application's listening port
         env:
