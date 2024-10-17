@@ -14,6 +14,7 @@ pipeline {
                 sh 'git checkout -b main || git checkout main'
             }
         }
+
         stage('Update YAML manifests') {
             steps {
                 sh '''
