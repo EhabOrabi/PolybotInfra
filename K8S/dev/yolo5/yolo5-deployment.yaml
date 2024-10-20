@@ -18,7 +18,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: yolo5
-          image: ehab215/yolo5_dev:v1.0.17
+          image: ehab215/yolo5_dev:v1.0.18
           env:
             - name: SQS_QUEUE_NAME
               value: ehabo-PolybotServiceQueue-k8s-dev
