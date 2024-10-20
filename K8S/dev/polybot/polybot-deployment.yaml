@@ -24,7 +24,7 @@ spec:
           - name: secret_name
             value: ehabo_telegram_tokenV1_tf_dev
           - name: TELEGRAM_APP_URL
-            value: https://ehabo-polybot-k8s-v1.int-devops.click
+            value: https://ehabo-polybot-k8s-v2.int-devops.click
           - name: REGION_NAME
             value: eu-west-3
           - name: SQS_QUEUE_URL
