@@ -42,7 +42,6 @@ spec:
              - key: tls.key
                path: key
 
-
 ---
 apiVersion: v1
 kind: Service
