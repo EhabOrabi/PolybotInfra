@@ -37,9 +37,9 @@ spec:
           secret:
             secretName: polybot-tls-dev
             items:
-             - key: tls_dev.crt
+             - key: tls.crt
                path: cert
-             - key: tls_dev.key
+             - key: tls.key
                path: key
 
 
