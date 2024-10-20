@@ -29,6 +29,8 @@ spec:
             value: eu-west-3
           - name: SQS_QUEUE_URL
             value: https://sqs.eu-west-3.amazonaws.com/019273956931/ehabo-PolybotServiceQueue-k8s
+          - name: SQS_QUEUE_NAME
+            value: ehabo-PolybotServiceQueue-k8s
         volumeMounts:
           - name: tls-vol
             mountPath: /usr/src/app/tls
